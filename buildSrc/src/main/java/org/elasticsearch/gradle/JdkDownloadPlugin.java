@@ -66,17 +66,19 @@ public class JdkDownloadPlugin implements Plugin<Project> {
 
         project.afterEvaluate(p -> {
             for (Jdk jdk : jdksContainer) {
-                jdk.finalizeValues();
+                if (!jdk.getVendor().equals("Oracle Corporation")) {
+                    jdk.finalizeValues();
 
-                // depend on the jdk directory "artifact" from the root project
-                DependencyHandler dependencies = project.getDependencies();
-                Map<String, Object> depConfig = new HashMap<>();
-                depConfig.put("path", ":"); // root project
-                depConfig.put("configuration", configName("extracted_jdk", jdk.getVendor(), jdk.getVersion(), jdk.getPlatform()));
-                project.getDependencies().add(jdk.getConfigurationName(), dependencies.project(depConfig));
+                    // depend on the jdk directory "artifact" from the root project
+                    DependencyHandler dependencies = project.getDependencies();
+                    Map<String, Object> depConfig = new HashMap<>();
+                    depConfig.put("path", ":"); // root project
+                    depConfig.put("configuration", configName("extracted_jdk", jdk.getVendor(), jdk.getVersion(), jdk.getPlatform()));
+                    project.getDependencies().add(jdk.getConfigurationName(), dependencies.project(depConfig));
 
-                // ensure a root level jdk download task exists
-                setupRootJdkDownload(project.getRootProject(), jdk);
+                    // ensure a root level jdk download task exists
+                    setupRootJdkDownload(project.getRootProject(), jdk);
+                }
             }
         });
 
@@ -86,6 +88,7 @@ public class JdkDownloadPlugin implements Plugin<Project> {
                 repo.content(content -> {
                     content.excludeGroup("adoptopenjdk");
                     content.excludeGroup("openjdk");
+                    content.excludeGroup("Oracle Corporation");
                 });
             }
         });
