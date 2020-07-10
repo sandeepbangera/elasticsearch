@@ -1,3 +1,6 @@
+# Copyright (C) 2020, Oracle and/or its affiliates.
+# Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+
 ARG ELASTIC_VERSION=7.6.1
 # This Dockerfile is based on <https://github.com/elastic/elasticsearch-docker>
 FROM container-registry.oracle.com/os/oraclelinux:7-slim as builder
