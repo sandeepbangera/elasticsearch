@@ -22,6 +22,10 @@ import static org.elasticsearch.gradle.PropertyNormalization.IGNORE_VALUE
  * specific language governing permissions and limitations
  * under the License.
  */
+
+// Copyright (c) 2020, Oracle Corporation and/or its affiliates.
+// Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+
 apply plugin: 'elasticsearch.test.fixtures'
 
 esplugin {
@@ -49,7 +53,7 @@ dependencies {
   compile "joda-time:joda-time:${versions.joda}"
 
   // HACK: javax.xml.bind was removed from default modules in java 9, so we pull the api in here,
-  // and whitelist this hack in JarHell 
+  // and whitelist this hack in JarHell
   compile 'javax.xml.bind:jaxb-api:2.2.2'
 
   testCompile project(':test:fixtures:s3-fixture')
@@ -299,7 +303,7 @@ thirdPartyAudit.ignoreMissingClasses(
   'software.amazon.ion.system.IonSystemBuilder',
   'software.amazon.ion.system.IonTextWriterBuilder',
   'software.amazon.ion.system.IonWriterBuilder',
-  // We don't use the kms dependency 
+  // We don't use the kms dependency
   'com.amazonaws.services.kms.AWSKMS',
   'com.amazonaws.services.kms.AWSKMSClient',
   'com.amazonaws.services.kms.model.DecryptRequest',
