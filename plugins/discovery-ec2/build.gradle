@@ -19,6 +19,9 @@ import org.elasticsearch.gradle.info.BuildParams
  * under the License.
  */
 
+// Copyright (C) 2020, Oracle and/or its affiliates.
+// Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
+
 esplugin {
   description 'The EC2 discovery plugin allows to use AWS API for the unicast discovery mechanism.'
   classname 'org.elasticsearch.discovery.ec2.Ec2DiscoveryPlugin'
